@@ -3,15 +3,14 @@ package com.xiao.awesome_jetpack.base;
 import android.content.pm.ApplicationInfo;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.xiao.awesome_jetpack.MyApplication;
-import com.xiao.awesome_jetpack.global.SharedViewModel;
+import com.xiao.awesome_jetpack.application.MyApplication;
+import com.xiao.awesome_jetpack.common.SharedViewModel;
+import com.xiao.awesome_jetpack.common.networkstate.NetworkStateManager;
 import com.xiao.awesome_jetpack.utils.AdaptScreenUtils;
 import com.xiao.awesome_jetpack.utils.ScreenUtils;
 
@@ -29,6 +28,7 @@ public class BaseActivity extends AppCompatActivity {
 
         mSharedViewModel = getAppViewModelProvider().get(SharedViewModel.class);
 
+        getLifecycle().addObserver(NetworkStateManager.getInstance());
     }
 
     /**
@@ -50,22 +50,6 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * Toast 长时间
-     * @param text
-     */
-    public void showLongToast(String text) {
-        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
-    }
-
-    /**
-     * Toast 短时间
-     * @param text
-     */
-    public void showShortToast(String text) {
-        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
-    }
-
-    /**
      * 使用 appolication 共享
      * 给此BaseActivity 得到ViewModelProvider
      * application
@@ -73,16 +57,6 @@ public class BaseActivity extends AppCompatActivity {
      */
     private ViewModelProvider getAppViewModelProvider() {
         return ((MyApplication) getApplication()).getAppViewModelProvider(this);
-    }
-
-    /**
-     * 暴露给自己的子类 得到ViewModelProvider
-     * @param activity
-     * 子类的 activity
-     * @return 唯一  ViewModelProvider  ViewModel
-     */
-    protected ViewModelProvider getActivityViewModelProvider(AppCompatActivity activity) {
-        return new ViewModelProvider(activity, ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()));
     }
 
 }

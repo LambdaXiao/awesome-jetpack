@@ -1,4 +1,4 @@
-package com.xiao.awesome_jetpack;
+package com.xiao.awesome_jetpack.application;
 
 import android.app.Activity;
 import android.app.Application;
@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelStoreOwner;
  * <p>
  * 为什么要 “implements ViewModelStoreOwner” 就是为了 让整个项目持有一份 被观察者接口，为了完成共享
  */
-public class MyApplication extends Application implements ViewModelStoreOwner {
+public class MyApplication extends BaseApp implements ViewModelStoreOwner {
 
     private ViewModelStore mAppViewModelStore;
     private ViewModelProvider.Factory mFactory;
@@ -25,6 +25,10 @@ public class MyApplication extends Application implements ViewModelStoreOwner {
         mAppViewModelStore = new ViewModelStore();
         // todo，这里可以完成一系列的初始化工作
 
+    }
+
+    public static MyApplication getApplication() {
+        return (MyApplication) getApp();
     }
 
     @NonNull

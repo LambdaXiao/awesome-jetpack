@@ -1,0 +1,27 @@
+<resources>
+    <declare-styleable name="XEditText">
+        <attr name="x_separator" format="string" />
+        <attr name="x_disableClear" format="boolean" />
+        <attr name="x_clearDrawable" format="reference" />
+        <attr name="x_showPwdDrawable" format="reference" />
+        <attr name="x_hidePwdDrawable" format="reference" />
+        <attr name="x_disableEmoji" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="RecyclerViewBanner">
+        <attr name="rvb_interval" format="integer" />
+        <attr name="rvb_showIndicator" format="boolean" />
+        <attr name="rvb_indicatorSelectedSrc" format="color|reference" />
+        <attr name="rvb_indicatorUnselectedSrc" format="color|reference" />
+        <attr name="rvb_indicatorSize" format="dimension|reference" />
+        <attr name="rvb_indicatorSpace" format="dimension|reference" />
+        <attr name="rvb_indicatorMargin" format="dimension|reference" />
+        <attr name="rvb_indicatorGravity" format="enum">
+            <enum name="left" value="0" />
+            <enum name="center" value="1" />
+            <enum name="right" value="2" />
+        </attr>
+        <attr name="rvb_autoPlaying" format="boolean" />
+    </declare-styleable>
+    <item name="rvb_banner_image_view_id" type="id" />
+</resources>

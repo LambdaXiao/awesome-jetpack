@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">awesome-jetpack</string>
+
+    <string name="network_not_good">网络不给力</string>
+    <string name="title_home">首页</string>
+    <string name="title_collect">收藏</string>
+    <string name="title_msg">消息</string>
+    <string name="title_personal">个人</string>
 </resources>

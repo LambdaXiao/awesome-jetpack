@@ -24,6 +24,10 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -31,8 +35,31 @@ dependencies {
 
     implementation "androidx.appcompat:appcompat:$rootProject.versions.appcompat"
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.versions.constraintlayout"
+    implementation "com.google.android.material:material:$rootProject.versions.material"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    //lifecycle库
     implementation "androidx.lifecycle:lifecycle-common-java8:$rootProject.versions.lifecycle"
+    //navigation库
+    implementation "androidx.navigation:navigation-fragment:$rootProject.versions.navigation"
+    implementation "androidx.navigation:navigation-ui:$rootProject.versions.navigation"
+    //room库
+    implementation "androidx.room:room-runtime:$rootProject.versions.room"
+    annotationProcessor "androidx.room:room-compiler:$rootProject.versions.room" // For Kotlin use kapt instead of annotationProcessor
+    //gson
+    implementation "com.google.code.gson:gson:$rootProject.versions.gson"
+    //retrofit2库
+    implementation 'com.squareup.retrofit2:retrofit:2.6.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.1'
+    //rxjava2库
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.11'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    //下拉刷新库
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
+    //下拉刷新库自定义头部
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'
+    //图片加载库
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
 }

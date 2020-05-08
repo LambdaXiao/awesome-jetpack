@@ -1,4 +1,4 @@
-package com.xiao.awesome_jetpack.global;
+package com.xiao.awesome_jetpack.common;
 
 import androidx.lifecycle.ViewModel;
 
