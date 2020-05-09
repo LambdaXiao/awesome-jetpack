@@ -1,6 +1,7 @@
 package com.xiao.awesome_jetpack.ui.home;
 
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -53,11 +54,10 @@ public class HomeFragment extends BaseFragment {
         mViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         requestHomeViewModel = new ViewModelProvider(this).get(RequestHomeViewModel.class);
 
-        View root = inflater.inflate(R.layout.home_fragment, container, false);
-        binding = HomeFragmentBinding.bind(root);
+        binding = DataBindingUtil.inflate(inflater,R.layout.home_fragment, container, false);
         binding.setVm(mViewModel);
         binding.setLifecycleOwner(this);
-        return root;
+        return binding.getRoot();
     }
 
     @Override

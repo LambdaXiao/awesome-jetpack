@@ -1,6 +1,7 @@
 package com.xiao.awesome_jetpack.ui.main;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -9,6 +10,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.xiao.awesome_jetpack.R;
@@ -31,7 +33,7 @@ public class MainActivity extends BaseActivity {
         // 让感应生效
         mActivityMainBinding.setLifecycleOwner(this);
 
-
+        setSupportActionBar(new Toolbar(this));
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
         // 处理三个  Fragment

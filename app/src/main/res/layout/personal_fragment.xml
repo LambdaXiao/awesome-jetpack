@@ -3,13 +3,13 @@
     <data>
         <variable
             name="vm"
-            type="com.xiao.awesome_jetpack.ui.personal.PersonalViewModel" />
+            type="com.xiao.awesome_jetpack.ui.personal.viewmodel.PersonalViewModel" />
     </data>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.personal.viewmodel.PersonalFragment">
+    tools:context=".ui.personal.PersonalFragment">
 
     <TextView
         android:layout_width="match_parent"

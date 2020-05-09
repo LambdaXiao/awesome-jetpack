@@ -1,5 +1,6 @@
-package com.xiao.awesome_jetpack.ui.personal.viewmodel;
+package com.xiao.awesome_jetpack.ui.personal;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -14,7 +15,7 @@ import android.view.ViewGroup;
 import com.xiao.awesome_jetpack.R;
 import com.xiao.awesome_jetpack.base.BaseFragment;
 import com.xiao.awesome_jetpack.databinding.PersonalFragmentBinding;
-import com.xiao.awesome_jetpack.ui.personal.PersonalViewModel;
+import com.xiao.awesome_jetpack.ui.personal.viewmodel.PersonalViewModel;
 
 public class PersonalFragment extends BaseFragment {
 
@@ -28,7 +29,8 @@ public class PersonalFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.personal_fragment, container, false);
+        mBinding = DataBindingUtil.inflate(inflater,R.layout.personal_fragment, container, false);
+        return mBinding.getRoot();
     }
 
     @Override

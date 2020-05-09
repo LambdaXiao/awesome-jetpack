@@ -3,9 +3,11 @@ package com.xiao.awesome_jetpack.ui.home.adapter;
 import android.content.Context;
 import android.text.TextUtils;
 
+import androidx.databinding.ViewDataBinding;
+
 import com.xiao.awesome_jetpack.R;
 import com.xiao.awesome_jetpack.common.adapter.BaseRecyclerAdapter;
-import com.xiao.awesome_jetpack.common.adapter.RecyclerViewHolder;
+import com.xiao.awesome_jetpack.databinding.ItemSearchPagerBinding;
 import com.xiao.awesome_jetpack.ui.home.bean.FeedArticleBean;
 
 import java.util.List;
@@ -26,17 +28,18 @@ public class ArticleListAdapter extends BaseRecyclerAdapter<FeedArticleBean> {
     }
 
     @Override
-    protected void bindData(RecyclerViewHolder helper, int position, FeedArticleBean article) {
+    protected void bindData(ViewDataBinding binding, int position, FeedArticleBean article) {
+        ItemSearchPagerBinding  itemSearchPagerBinding = (ItemSearchPagerBinding) binding;
         if (!TextUtils.isEmpty(article.getTitle())) {
-            helper.setText(R.id.item_search_pager_title, article.getTitle());
+            itemSearchPagerBinding.itemSearchPagerTitle.setText(article.getTitle());
         }
 //        if (article.isCollect() || isCollectPage) {
 //            helper.setImageResource(R.id.item_search_pager_like_iv, R.drawable.icon_like);
 //        } else {
-        helper.setImageResource(R.id.item_search_pager_like_iv, R.drawable.icon_like_article_not_selected);
+        itemSearchPagerBinding.itemSearchPagerLikeIv.setImageResource(R.drawable.icon_like_article_not_selected);
 //        }
         if (!TextUtils.isEmpty(article.getAuthor())) {
-            helper.setText(R.id.item_search_pager_author, article.getAuthor());
+            itemSearchPagerBinding.itemSearchPagerAuthor.setText( article.getAuthor());
         }
 //        setTag(helper, article);
         if (!TextUtils.isEmpty(article.getChapterName())) {
@@ -44,11 +47,11 @@ public class ArticleListAdapter extends BaseRecyclerAdapter<FeedArticleBean> {
 //            if (isCollectPage) {
 //                helper.setText(R.id.item_search_pager_chapterName, article.getChapterName());
 //            } else {
-            helper.setText(R.id.item_search_pager_chapterName, classifyName);
+            itemSearchPagerBinding.itemSearchPagerChapterName.setText(classifyName);
 //            }
         }
         if (!TextUtils.isEmpty(article.getNiceDate())) {
-            helper.setText(R.id.item_search_pager_niceDate, article.getNiceDate());
+            itemSearchPagerBinding.itemSearchPagerNiceDate.setText(article.getNiceDate());
         }
 //        if (isSearchPage) {
 //            CardView cardView = helper.getView(R.id.item_search_pager_group);

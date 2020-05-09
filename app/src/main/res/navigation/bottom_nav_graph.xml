@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_personal"
-        android:name="com.xiao.awesome_jetpack.ui.personal.viewmodel.PersonalFragment"
+        android:name="com.xiao.awesome_jetpack.ui.personal.PersonalFragment"
         android:label="personal_fragment"
         tools:layout="@layout/personal_fragment" />
 </navigation>

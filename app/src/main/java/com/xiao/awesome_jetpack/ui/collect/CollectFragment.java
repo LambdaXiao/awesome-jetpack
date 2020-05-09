@@ -1,9 +1,10 @@
 package com.xiao.awesome_jetpack.ui.collect;
 
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.app.ActionBar;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,9 +18,9 @@ import android.view.ViewGroup;
 import com.xiao.awesome_jetpack.R;
 import com.xiao.awesome_jetpack.base.BaseFragment;
 import com.xiao.awesome_jetpack.common.adapter.BaseRecyclerAdapter;
-import com.xiao.awesome_jetpack.common.adapter.RecyclerViewHolder;
 import com.xiao.awesome_jetpack.data.repository.local.database.Student;
 import com.xiao.awesome_jetpack.databinding.CollectFragmentBinding;
+import com.xiao.awesome_jetpack.databinding.ItemCollectListBinding;
 import com.xiao.awesome_jetpack.request.RequestCollectViewModel;
 import com.xiao.awesome_jetpack.ui.collect.viewmodel.CollectViewModel;
 
@@ -41,8 +42,7 @@ public class CollectFragment extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         mViewModel = new ViewModelProvider(this).get(CollectViewModel.class);
-        View root =  inflater.inflate(R.layout.collect_fragment, container, false);
-        binding = CollectFragmentBinding.bind(root);
+        binding =  DataBindingUtil.inflate(inflater,R.layout.collect_fragment, container, false);
         binding.setVm(mViewModel);
         binding.setClick(new ProxyClick());
         binding.setLifecycleOwner(this);
@@ -55,10 +55,11 @@ public class CollectFragment extends BaseFragment {
             }
 
             @Override
-            protected void bindData(RecyclerViewHolder holder, int position, Student student) {
-                holder.getTextView(R.id.tv_id).setText(String.valueOf(position + 1));
-                holder.getTextView(R.id.tv_name).setText(student.getName());
-                holder.getTextView(R.id.tv_age).setText(String.valueOf(student.getAge()));
+            protected void bindData(ViewDataBinding binding, int position, Student student) {
+                ItemCollectListBinding itemCollectListBinding = (ItemCollectListBinding) binding;
+                itemCollectListBinding.tvId.setText(String.valueOf(position + 1));
+                itemCollectListBinding.tvName.setText(student.getName());
+                itemCollectListBinding.tvAge.setText(String.valueOf(student.getAge()));
             }
 
         };
@@ -72,7 +73,7 @@ public class CollectFragment extends BaseFragment {
                 adapter.setList(students);
             }
         });
-        return root;
+        return binding.getRoot();
     }
 
 

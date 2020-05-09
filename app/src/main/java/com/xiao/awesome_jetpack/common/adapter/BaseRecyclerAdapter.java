@@ -5,7 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.xiao.awesome_jetpack.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,11 +19,10 @@ import java.util.List;
 /**
  * 通用RecycleView的适配器
  */
-public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerViewHolder> {
+public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRecyclerAdapter.RecyclerViewHolder> {
     protected final Context mContext;
     protected List<T> mItems;
     protected LayoutInflater mInflater;
-    protected ArrayList<View> movableViewList = new ArrayList<>();
     private OnItemClickListener mClickListener;
     private OnItemLongClickListener mLongClickListener;
 
@@ -30,8 +34,8 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
 
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        final RecyclerViewHolder holder = new RecyclerViewHolder(mContext,
-                mInflater.inflate(getItemLayoutId(viewType), parent, false));
+        View itemView = mInflater.inflate(getItemLayoutId(viewType), parent, false);
+        RecyclerViewHolder holder = new RecyclerViewHolder(itemView);
         if (mClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -54,7 +58,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
 
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
-        bindData(holder, position, mItems.get(position));
+        bindData(holder.binding, position, mItems.get(position));
     }
 
 
@@ -106,19 +110,14 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
     /**
      * 重写该方法进行item数据项视图的数据绑定
      *
-     * @param holder   通过holder获得item中的子View，进行数据绑定
      * @param position 该item的position
      * @param item     映射到该item的数据
      */
-    abstract protected void bindData(RecyclerViewHolder holder, int position, T item);
+    abstract protected void bindData(ViewDataBinding binding, int position, T item);
 
     @Override
     public void onViewAttachedToWindow(RecyclerViewHolder holder) {
         super.onViewAttachedToWindow(holder);
-    }
-
-    public ArrayList<View> getMovableViewList() {
-        return movableViewList;
     }
 
     public interface OnItemClickListener {
@@ -127,5 +126,16 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
 
     public interface OnItemLongClickListener {
         void onItemLongClick(View itemView, int pos);
+    }
+
+    static class RecyclerViewHolder extends RecyclerView.ViewHolder {
+
+        private ViewDataBinding binding;
+
+        public RecyclerViewHolder(@NonNull View itemView) {
+            super(itemView);
+            binding = DataBindingUtil.bind(itemView);
+        }
+
     }
 }

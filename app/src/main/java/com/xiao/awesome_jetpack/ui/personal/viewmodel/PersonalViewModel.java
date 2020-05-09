@@ -1,4 +1,4 @@
-package com.xiao.awesome_jetpack.ui.personal;
+package com.xiao.awesome_jetpack.ui.personal.viewmodel;
 
 import androidx.lifecycle.ViewModel;
 
