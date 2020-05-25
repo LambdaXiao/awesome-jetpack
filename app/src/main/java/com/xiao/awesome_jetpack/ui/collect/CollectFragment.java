@@ -41,8 +41,15 @@ public class CollectFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mViewModel = new ViewModelProvider(this).get(CollectViewModel.class);
+
         binding =  DataBindingUtil.inflate(inflater,R.layout.collect_fragment, container, false);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mViewModel = new ViewModelProvider(this).get(CollectViewModel.class);
         binding.setVm(mViewModel);
         binding.setClick(new ProxyClick());
         binding.setLifecycleOwner(this);
@@ -73,9 +80,7 @@ public class CollectFragment extends BaseFragment {
                 adapter.setList(students);
             }
         });
-        return binding.getRoot();
     }
-
 
     public class ProxyClick {
 

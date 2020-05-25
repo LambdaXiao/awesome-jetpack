@@ -50,20 +50,19 @@ public class HomeFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
-        mViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-        requestHomeViewModel = new ViewModelProvider(this).get(RequestHomeViewModel.class);
-
         binding = DataBindingUtil.inflate(inflater,R.layout.home_fragment, container, false);
-        binding.setVm(mViewModel);
-        binding.setLifecycleOwner(this);
         return binding.getRoot();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        requestHomeViewModel = new ViewModelProvider(this).get(RequestHomeViewModel.class);
         // TODO: Use the ViewModel
+        binding.setVm(mViewModel);
+        binding.setLifecycleOwner(this);
+
         //banner
         binding.rvBanner.setIndicatorInterval(5000);
         mBannerList = new ArrayList<>();

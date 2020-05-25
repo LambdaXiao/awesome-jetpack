@@ -12,7 +12,7 @@ public class CollectViewModel extends ViewModel {
         mText.setValue("收藏中心");
     }
 
-    public LiveData<String> getText() {
+    public MutableLiveData<String> getText() {
         return mText;
     }
 }

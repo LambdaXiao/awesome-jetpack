@@ -38,6 +38,9 @@ public class PersonalFragment extends BaseFragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(PersonalViewModel.class);
         // TODO: Use the ViewModel
+        mBinding.setVm(mViewModel);
+        mBinding.setLifecycleOwner(getViewLifecycleOwner());
+        mViewModel.getText().setValue("Test");
     }
 
 }
